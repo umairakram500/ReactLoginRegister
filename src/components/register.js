@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './login.css';
+import { connect } from 'react-redux';
+import { addUser } from '../action/userAction'
 
 //import { Link } from "react-router-dom";
 
@@ -33,10 +35,15 @@ class Register extends Component
     SaveAccount = () => {
         
         var userData = this.formToOject(this.refs);
+
+        
+
         userData.id = Math.floor(Math.random() * 99999);
         userData.created_at = new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString();
 
-        this.addUser(userData);
+
+
+        this.props.dispatch(addUser(userData));
 
         this.props.history.push('/');
 
@@ -75,4 +82,12 @@ class Register extends Component
     }
 }
 
-export default Register;
+
+const mapStateToProps = (store) => {
+    return {
+        users: store.userListReducer
+    }
+}
+
+
+export default connect(mapStateToProps)(Register);

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getUser } from '../action/userAction';
 
 class Profile extends Component 
 {
@@ -68,4 +70,12 @@ class Profile extends Component
     }
 }
 
-export default Profile;
+
+const mapStateToProps = (store) => {
+    return {
+        users: store.userListReducer
+    }
+}
+
+
+export default connect(mapStateToProps)(Profile);
