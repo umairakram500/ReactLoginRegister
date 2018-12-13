@@ -8,7 +8,10 @@ const userListReducer = (state = initialState, action) => {
             updateStorage();
             return  users;
 
-        case 'fetch_user':            
+        case 'fetch_user':  
+        return state.filter(user =>
+            user.id == action.payload
+        );;          
 
         case 'delete_user':
             users = state.filter(user =>

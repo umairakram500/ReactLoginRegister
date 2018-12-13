@@ -15,16 +15,21 @@ class Profile extends Component
     }
 
     findUser = () => {
-        const Users = JSON.parse(localStorage.getItem("Users"));
+        //const Users = JSON.parse(localStorage.getItem("Users"));
         const id = this.props.match.params.id.toString();
-        for(var user in Users) {
-            if (user.id === id) {
-                this.setState({
-                    user: user
-                })
-                //this.state.user = user;
-            }
-        }
+        var user = this.props.users.find(user => user.id == id);
+        console.log(user);
+        this.setState({
+                         user: user
+                     })
+        
+        // for(var user in Users) {
+        //     if (user.id === id) {
+        //         this.setState({
+        //             user: user
+        //         })
+        //     }
+        // }
     }
 
     render()
@@ -42,6 +47,7 @@ class Profile extends Component
                 
 
                 <table className="table table-bordered">
+                    <tbody>
                     <tr>
                         <th width="200">ID</th>
                         <td>{ this.state.user.id }</td>
@@ -62,6 +68,7 @@ class Profile extends Component
                         <th>Created At</th>
                         <td>{ this.state.user.created_at }</td>
                     </tr>
+                    </tbody>
                     
                 </table>
                 </div>
