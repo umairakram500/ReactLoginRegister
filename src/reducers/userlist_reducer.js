@@ -19,7 +19,7 @@ const userListReducer = (state = initialState, action) => {
             return state;
         
         case 'edit_user': 
-            index = state.findIndex((user => user.id === Number(action.payload)));
+            var index = state.findIndex((user => user.id === Number(action.payload)));
             state[index] = action.payload;
             users = state;
             updateStorage();
