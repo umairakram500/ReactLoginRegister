@@ -4,23 +4,37 @@ const userListReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'add_user':
+        //debugger
             users = [ ...state, action.payload];
             updateStorage();
             return  users;
 
-        case 'fetch_user':  
-        return state.filter(user =>
-            user.id == action.payload
-        );;          
+        case 'get_user': 
+        return state.find(user =>
+            user.id === Number(action.payload)
+        );
+
+        case 'all_user': 
+            debugger
+            return state;
+        
+        case 'edit_user': 
+            index = state.findIndex((user => user.id === Number(action.payload)));
+            state[index] = action.payload;
+            users = state;
+            updateStorage();
+            return users;
 
         case 'delete_user':
-            users = state.filter(user =>
-                user.id !== action.payload
+        //debugger
+            users = state.filter(s =>
+                s.id != action.payload
             );
             updateStorage();
             return  users;
 
         default:
+        //debugger
            return state;
     }
 

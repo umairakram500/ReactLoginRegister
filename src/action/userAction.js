@@ -10,6 +10,14 @@ export const getUser = (user) => {
     return {type : "get_user", payload : user}
 }
 
+export const allUser = (user) => {
+    return {type : "all_user", payload : user}
+}
+
+export const editUser = (user) => {
+    return {type : "edit_user", payload : user}
+}
+
 // export {
 //     deleteUser, 
 //     addUser, 

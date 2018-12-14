@@ -15,36 +15,15 @@ class Register extends Component
         return inputs;
     }
 
-    addUser(userData)
-    {
-        var users = this.getUsers();
-        users.push(userData);
-        //console.log('addUser', users);
-        localStorage.setItem("Users", JSON.stringify(users));
-
-    }
-
-    getUsers()
-    {
-        var users = localStorage.getItem("Users");      
-        //console.log('getUsers',  JSON.parse(users));
-        return users != null ? JSON.parse(users) : []
-    }
 
     // Save Accounts 
     SaveAccount = () => {
         
         var userData = this.formToOject(this.refs);
-
-        
-
         userData.id = Math.floor(Math.random() * 99999);
         userData.created_at = new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString();
-
-
-
+//console.log(userData);
         this.props.dispatch(addUser(userData));
-
         this.props.history.push('/');
 
     }

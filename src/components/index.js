@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import User from './user';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deleteUser } from '../action/userAction'
+import { deleteUser, allUser } from '../action/userAction'
 
 
 class Index extends Component 
@@ -14,11 +14,13 @@ class Index extends Component
 
     delUser(index)
     {
-        this.props.dispatch(deleteUser(index, 'delete_user'));
+        debugger
+        this.props.dispatch(deleteUser(index));
     }
 
     bindUsers = () => { 
         //debugger
+        this.props.dispatch(allUser([], 'all_user'));
         if (this.props.users.length > 0) {
             return this.props.users.map((value, index) => {
                 return <tr key={index} data-key={index}>
